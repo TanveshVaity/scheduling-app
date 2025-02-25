@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../public/logo.png";
 import { Button } from "./ui/button";
+import AuthModel from "./AuthModel";
 
 export default function Navbar(){
     return (
@@ -10,7 +11,7 @@ export default function Navbar(){
                 <Image src={Logo} alt="logo" className="size-10"/>
                 <h4 className="text-2xl font-semibold">Scheduling App</h4>
             </Link>
-            <Button>Try for free</Button>
+            <AuthModel />
         </div>
     )
 }
