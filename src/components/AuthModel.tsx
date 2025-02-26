@@ -27,7 +27,7 @@ export default function AuthModel(){
                     <Image src={Logo} alt="logo" className="size-10"/>
                     <h4 className="text-2xl font-semibold">Scheduling App</h4>
                 </DialogHeader>
-                <DialogTitle>Sign in</DialogTitle>
+                <DialogTitle className="flex justify-center text-semibold">Sign In</DialogTitle>
                 <div className="flex flex-col gap-4 mt-5">
                     <form action={googleSignIn}>
                         <SubmitButton src={googleLogo} name="Sign in with Google"/>

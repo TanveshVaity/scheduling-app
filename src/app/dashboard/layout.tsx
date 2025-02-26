@@ -12,9 +12,21 @@ import {
 } from "@/components/ui/sheet"
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-  
+import { ThemeToggle } from "@/components/ThemeToggle";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { signOutUser } from "../actons";
+import { requireUser } from "@/lib/hooks";
 
-export default function DashboardLayout({children}: Readonly<{children: React.ReactNode}>) {
+
+export default async function DashboardLayout({children}: Readonly<{children: React.ReactNode}>) {
+    const session = await requireUser();
     return (
         <>
             <div className="min-h-screen w-full grid md:gid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -52,7 +64,43 @@ export default function DashboardLayout({children}: Readonly<{children: React.Re
                                 </SheetHeader>
                             </SheetContent>
                         </Sheet>
+                        
+                        <div className="ml-auto flex items-center gap-x-4">
+                            <ThemeToggle />
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="secondary" size="icon" className="rounded-full">
+                                        <Image 
+                                            src={session?.user?.image as string} 
+                                            alt="Profile"
+                                            height={20} 
+                                            width={20}
+                                            className="w-full h-full rounded-full"
+                                        />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem asChild>
+                                        <Link href="/dashboard/settings">
+                                            Settings
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem asChild>
+                                        <form className="w-full" action={signOutUser}>
+                                            <button type="submit" className="w-full text-left">
+                                                Sign Out
+                                            </button>
+                                        </form>
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
                     </header>
+                    <main>
+                        {children}
+                    </main>
                 </div>
             </div>
         </>
