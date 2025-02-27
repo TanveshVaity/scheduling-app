@@ -6,14 +6,15 @@ import Image from "next/image";
 interface SubmitButtonProps {
   src?: string; 
   name: string;
+  variant : "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined;
 }
 
-export default function SubmitButton({ src, name }: SubmitButtonProps) {
+export default function SubmitButton({ src, name, variant }: SubmitButtonProps) {
   const { pending } = useFormStatus();
 
   return (
     <Button
-      variant="outline"
+      variant={variant}
       className="w-full font-semibold relative"
       type="submit"
       disabled={pending}

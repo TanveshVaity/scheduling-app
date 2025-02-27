@@ -30,10 +30,10 @@ export default function AuthModel(){
                 <DialogTitle className="flex justify-center text-semibold">Sign In</DialogTitle>
                 <div className="flex flex-col gap-4 mt-5">
                     <form action={googleSignIn}>
-                        <SubmitButton src={googleLogo} name="Sign in with Google"/>
+                        <SubmitButton src={googleLogo} variant={"outline"} name="Sign in with Google"/>
                     </form>
                     <form action={githubSignIn}>
-                        <SubmitButton src={githubLogo} name="Sign in with Github"/>
+                        <SubmitButton src={githubLogo} variant={"outline"} name="Sign in with Github"/>
                     </form>
                 </div>
             </DialogContent>
